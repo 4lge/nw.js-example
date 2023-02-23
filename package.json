@@ -1,12 +1,54 @@
 {
-  "name":"nw.js-example",
-  "version":"1.0.0",
-  "devDependencies":{
-    "nw":"^0.73.0",
-    "nw-builder":"^4.0.11"
+  "name": "nw.js-example",
+  "version": "1.0.0",
+  "devDependencies": {
+    "nw": "0.73.0-sdk",
+    "nwjs-builder-phoenix": "latest"
   },
-    "scripts":{
-    "dev":"nw src/",
-    "prod":"nwbuild --platforms win32,win64,osx64,linux32,linux64 --buildDir dist/ src/"
+  "scripts": {
+    "dev": "nw src/",
+    "build": "build --concurrent --tasks win-x64,linux-x64,mac-x64 --mirror https://dl.nwjs.io/ src/",
+    "normal": "run --x64 --mirror https://dl.nwjs.io/ src/"
+  },
+  "dev": {
+    "nwVersion": "latest",
+    "nwFlavor": "sdk"
+  },
+  "normal": {
+    "nwVersion": "latest",
+    "nwFlavor": "normal"
+  },
+  "build": {
+    "nwVersion": "latest",
+    "nwFlavor": "normal",
+    "targets": [
+      "zip",
+      "nsis7z"
+    ],
+    "excludes": [
+      "package-lock.json",
+      "assets/*",
+      "src/sass/*"
+    ],
+    "strippedProperties": [
+      "scripts",
+      "devDependencies",
+      "build"
+    ],
+    "win": {
+      "icon": "assets/icon.ico"
+    },
+    "mac": {
+      "icon": "assets/icon.icns"
+    },
+    "nsis": {
+      "icon": "assets/icon.ico",
+      "unIcon": "assets/icon.ico",
+      "languages": [
+        "English"
+      ],
+      "diffUpdaters": false,
+      "hashCalculation": true
+    }
   }
 }

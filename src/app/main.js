@@ -1,21 +1,21 @@
-var intensity = [0, 0.14285714285714285, 0.2857142857142857, 0.42857142857142855, 0.5714285714285714, 0.7142857142857143, 0.8571428571428571, 1];
-
 var data = [{
-    type: "mesh3d",
-    x: [0, 0, 1, 1, 0, 0, 1, 1],
-    y: [0, 1, 1, 0, 0, 1, 1, 0],
-    z: [0, 0, 0, 0, 1, 1, 1, 1],
-    i: [7, 0, 0, 0, 4, 4, 6, 6, 4, 0, 3, 2],
-    j: [3, 4, 1, 2, 5, 6, 5, 2, 0, 1, 6, 3],
-    k: [0, 7, 2, 3, 6, 7, 1, 1, 5, 5, 7, 6],
-    intensity: intensity,
-    colorscale: [
-      [0, 'rgb(255, 0, 255)'],
-      [0.5, 'rgb(0, 255, 0)'],
-      [1, 'rgb(0, 0, 255)']
-    ]
-  }
-];
+  type: "sunburst",
+  labels: ["Eve", "Cain", "Seth", "Enos", "Noam", "Abel", "Awan", "Enoch", "Azura"],
+  parents: ["", "Eve", "Eve", "Seth", "Seth", "Eve", "Eve", "Awan", "Eve" ],
+  values:  [10, 14, 12, 10, 2, 6, 6, 4, 4],
+  outsidetextfont: {size: 20, color: "#377eb8"},
+  leaf: {opacity: 0.4},
+  marker: {line: {width: 2}},
+}];
 
-Plotly.plot('myDiv', data, {}, {showSendToCloud: true});
+var layout = {
+  margin: {l: 0, r: 0, b: 0, t: 0},
+  width: 500,
+  height: 500
+};
+
+
+$(document).ready(function(){
+  Plotly.newPlot('myDiv', data, layout);
+});
 
